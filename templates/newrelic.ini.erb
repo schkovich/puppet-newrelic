@@ -1,4 +1,5 @@
-;
+; configuration for New Relic PHP agent extension
+; priority=50
 ; This file contains the various settings for the New Relic PHP agent. There
 ; are many options, all of which are described in detail at the following URL:
 ; https://newrelic.com/docs/php/php-agent-phpini-settings
@@ -625,6 +626,9 @@ newrelic.webtransaction.name.files = "<%= @newrelic_ini_webtransaction_name_file
 ;          setting above. If you set it to the same name, then audit logging will be
 ;          silently ignored.
 ;newrelic.daemon.auditlog = "/var/log/newrelic/audit.log"
+<%- if @newrelic_daemon_auditlog -%>
+auditlog=<%= @newrelic_daemon_auditlog %>
+<%- end -%>
 
 ;
 ; Setting: newrelic.transaction_events.enabled
