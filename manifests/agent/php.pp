@@ -73,6 +73,9 @@ class newrelic::agent::php (
   $newrelic_daemon_proxy                                 = undef,
   $newrelic_daemon_collector_host                        = undef,
   $newrelic_daemon_auditlog                              = undef,
+  $newrelic_extension_sapis = ['fpm', 'apache2'],
+  $newrelic_extension_ensure = 'present',
+  $newrelic_extension_priority = 50,
 ) inherits ::newrelic {
 
   if ! $newrelic_license_key {
@@ -128,9 +131,12 @@ class newrelic::agent::php (
     newrelic_ini_capture_params                           => $newrelic_ini_capture_params,
     newrelic_ini_ignored_params                           => $newrelic_ini_ignored_params,
     newrelic_ini_webtransaction_name_files                => $newrelic_ini_webtransaction_name_files,
-    before                                          => [ File['/etc/newrelic/newrelic.cfg'], Service[$newrelic_php_service] ],
-    require                                         => Package[$newrelic_php_package],
-    notify                                          => Service[$newrelic_php_service],
+    newrelic_extension_ensure                             => $newrelic_extension_ensure,
+    newrelic_extension_sapis                              => $newrelic_extension_sapis,
+    newrelic_extension_priority                           => $newrelic_extension_priority,
+    before                                                => [ File['/etc/newrelic/newrelic.cfg'], Service[$newrelic_php_service] ],
+    require                                               => Package[$newrelic_php_package],
+    notify                                                => Service[$newrelic_php_service],
   }
 
   file { '/etc/newrelic/newrelic.cfg':

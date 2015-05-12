@@ -35,6 +35,9 @@ define newrelic::php::newrelic_ini (
   $newrelic_ini_capture_params,
   $newrelic_ini_ignored_params,
   $newrelic_ini_webtransaction_name_files,
+  $newrelic_extension_sapis,
+  $newrelic_extension_ensure,
+  $newrelic_extension_priority,
   $exec_path,
 ) {
 
@@ -53,4 +56,12 @@ define newrelic::php::newrelic_ini (
     require => Exec["/usr/bin/newrelic-install ${name}"],
   }
 
+  $extension = 'newrelic'
+  $uniqe_sapis = suffix($newrelic_extension_sapis, $extension)
+  newrelic::php::sapi { $uniqe_sapis:
+    extension => $extension,
+    ensure    => $newrelic_extension_ensure,
+    priority  => $newrelic_extension_priority,
+    require   => [Package['newrelic-php5'], File["${name}/newrelic.ini"]]
+  }
 }
