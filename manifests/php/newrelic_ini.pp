@@ -58,7 +58,7 @@ define newrelic::php::newrelic_ini (
 
   $extension = 'newrelic'
   $uniqe_sapis = suffix($newrelic_extension_sapis, $extension)
-  php::sapis { $uniqe_sapis:
+  newrelic::php::sapi { $uniqe_sapis:
     extension => $extension,
     ensure    => $newrelic_extension_ensure,
     priority  => $newrelic_extension_priority,

@@ -1,4 +1,4 @@
-define php::sapis (
+define newrelic::php::sapi (
   $extension,
   $ensure,
   $priority,
@@ -21,7 +21,7 @@ define php::sapis (
   }
 
   unless empty($disenable) {
-    php::extension { $disenable:
+    newrelic::php::extension { $disenable:
       extension   => $extension,
       ensure      => $ensure,
       priority => $priority,
