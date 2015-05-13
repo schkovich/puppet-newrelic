@@ -4,6 +4,11 @@ define newrelic::php::extension (
   $priority = 20,
 ) {
 
+  Exec {
+  #   default path minus games
+    path    => '/bin:/usr/bin:/usr/local/bin: /sbin:/usr/sbin:/usr/local/sbin',
+  }
+
   $sapi = delete($title, $extension)
 
   validate_re($ensure, '^(latest|present|installed|absent)$')
