@@ -1,4 +1,4 @@
-define php::sapi (
+define php::sapis (
   $extension,
   $ensure,
   $priority,
