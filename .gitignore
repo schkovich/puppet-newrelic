@@ -1,5 +1,6 @@
 pkg/
 Gemfile.lock
+.bundle
 .vagrant
 
 ### JetBrains template
@@ -37,7 +38,11 @@ Gemfile.lock
 ## Plugin-specific files:
 
 # IntelliJ
+<<<<<<< HEAD
 /out/
+=======
+out/
+>>>>>>> master
 
 # mpeltonen/sbt-idea plugin
 .idea_modules/
@@ -49,3 +54,22 @@ atlassian-ide-plugin.xml
 com_crashlytics_export_strings.xml
 crashlytics.properties
 crashlytics-build.properties
+
+### NetBeans template
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+nbactions.xml
+nb-configuration.xml
+
+
+
+### OSX template
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Icon must end with two \r
+Icon
